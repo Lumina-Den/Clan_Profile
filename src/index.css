@@ -1,0 +1,55 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-dark-charcoal text-white font-sans;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-neon {
+    @apply px-6 py-3 border-2 border-neon-blue text-neon-blue font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-neon-blue hover:text-dark-charcoal hover:shadow-lg;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  
+  .btn-neon:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  .card-cyber {
+    @apply bg-cyber-gray border border-neon-blue/30 backdrop-blur-sm;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.1);
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-cyber font-bold text-center mb-16 text-glow;
+    background: linear-gradient(45deg, #00FFFF, #FF4081);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-neon {
+    0% {
+      filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 30px rgba(0, 255, 255, 0.4)) drop-shadow(0 0 45px rgba(0, 255, 255, 0.2));
+    }
+    100% {
+      filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.3));
+    }
+  }
+}
