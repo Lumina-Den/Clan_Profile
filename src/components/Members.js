@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 const Members = () => {
   const members = [
     {
-      name: "Alex Chen",
-      role: "Clan Leader",
-      skills: ["Python", "JavaScript", "React", "AI/ML"],
+      name: "Vishal",
+      role: "Captain Basher",
+      skills: ["Python", "Java", "Data", "AI/ML"],
       achievements: ["ICPC Finalist", "Google Code Jam Top 100"],
       avatar: "AC"
     },
     {
-      name: "Sarah Kim",
-      role: "Technical Lead",
+      name: "Ajisha,
+      role: "Captain Basher",
       skills: ["Java", "C++", "Algorithms", "System Design"],
       achievements: ["Codeforces Master", "Meta Hackathon Winner"],
       avatar: "SK"

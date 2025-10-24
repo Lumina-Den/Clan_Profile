@@ -17,7 +17,6 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Members', href: '/members' },
     { name: 'Events', href: '/events' },
     { name: 'Projects', href: '/projects' },
@@ -32,25 +31,25 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8">
+          <Link to="/" className="flex items-center space-x-3 mr-auto">
+            <div className="w-12 h-12">
               <img 
                 src="/lumina.png" 
                 alt="LUMINA Logo" 
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-cyber text-xl font-bold text-neon-blue">LUMINA</span>
+            <span className="font-cyber text-4xl font-bold text-neon-blue">LUMINA</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`transition-colors duration-300 px-3 py-2 text-sm font-medium ${
+                  className={`transition-colors duration-300 px-2 py-2 text-lg font-medium ${
                     location.pathname === item.href
                       ? 'text-neon-blue border-b-2 border-neon-blue'
                       : 'text-gray-300 hover:text-neon-blue'
@@ -86,7 +85,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block px-3 py-2 text-base font-medium transition-colors duration-300 ${
+                className={`block px-3 py-2 text-xl font-medium transition-colors duration-300 ${
                   location.pathname === item.href
                     ? 'text-neon-blue bg-neon-blue/10'
                     : 'text-gray-300 hover:text-neon-blue'

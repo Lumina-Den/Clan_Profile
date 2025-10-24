@@ -260,9 +260,7 @@ const Events = () => {
             Subscribe to our calendar and get notified about upcoming workshops, competitions, and community events.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="btn-neon px-8 py-4 text-lg font-semibold">
-              Subscribe to Calendar
-            </button>
+            
             <button className="px-8 py-4 text-lg font-semibold border-2 border-hot-pink text-hot-pink hover:bg-hot-pink hover:text-dark-charcoal transition-all duration-300">
               Join Discord
             </button>

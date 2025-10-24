@@ -211,7 +211,7 @@ const JoinUs = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://discord.gg/lumina"
+                  href="https://discord.gg/Z4cwxuMU"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition-colors duration-300"
@@ -219,7 +219,7 @@ const JoinUs = () => {
                   Join Discord
                 </a>
                 <a
-                  href="https://github.com/lumina"
+                  href="https://github.com/Byte-Bash-Blitz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 border border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-dark-charcoal rounded-lg font-semibold transition-all duration-300"
