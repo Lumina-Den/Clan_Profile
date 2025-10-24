@@ -18,8 +18,8 @@ const Footer = () => {
       { name: 'Contact', href: '/contact' }
     ],
     'Resources': [
-      { name: 'GitHub', href: 'https://github.com/lumina', external: true },
-      { name: 'Discord', href: 'https://discord.gg/lumina', external: true },
+      { name: 'GitHub', href: 'https://github.com/Lumina-Den', external: true },
+      { name: 'Discord', href: 'https://discord.gg/Z4cwxuMU', external: true },
       { name: 'Documentation', href: '#', external: true },
       { name: 'Blog', href: '#', external: true }
     ]

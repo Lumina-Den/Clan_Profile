@@ -100,14 +100,19 @@ const Home = () => {
                 LUMINA
               </span>
             </motion.h1>
-
+            
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
               className="text-xl md:text-2xl text-gray-300 font-light"
             >
-              Byte Bash Blitz
+              <p className="mt-4 text-2xl font-cyber text-hot-pink tracking-widest">
+                        "Tanoshinagara manabu"
+            </p>
+            <p className="text-lg text-gray-400">
+                        (Learning while having fun)
+            </p>
             </motion.p>
           </div>
 
