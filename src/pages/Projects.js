@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { CodeBracketIcon, EyeIcon, StarIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { CodeBracketIcon, EyeIcon } from '@heroicons/react/24/outline';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const projects = [
     {
-      title: "CodeCollab Platform",
-      description: "Real-time collaborative coding platform with integrated video chat and code execution.",
-      tech: ["React", "Node.js", "Socket.io", "Docker"],
-      category: "Web Development",
+      title: "DataSet-Analyser",
+      description: "R",
+      tech: ["Streamlit", "ML", "Pandas", "Numpy"],
+      category: "Pandas/Numpy/ML",
       status: "Live",
-      github: "https://github.com/lumina/codecollab",
-      demo: "https://codecollab.lumina.dev",
-      stars: 234,
-      forks: 45,
-      contributors: ["Alex Chen", "Sarah Kim", "Marcus Johnson"],
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=250&fit=crop"
+      github: "https://github.com/Vishal-46/Dataset-analyser",
+      demo: "https://dataset-summarizer.streamlit.app/",
+      contributors: ["Vishal"],
+  image: "/Dset.png"
     },
     {
       title: "Algorithm Visualizer",
@@ -216,22 +214,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Stats */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center text-yellow-400">
-                      <StarIcon className="w-4 h-4 mr-1" />
-                      <span className="text-sm">{project.stars}</span>
-                    </div>
-                    <div className="flex items-center text-gray-400">
-                      <ArrowPathIcon className="w-4 h-4 mr-1" />
-                      <span className="text-sm">{project.forks}</span>
-                    </div>
-                  </div>
-                  <div className="text-gray-400 text-sm">
-                    {project.contributors.length} contributors
-                  </div>
-                </div>
+                
 
                 {/* Contributors */}
                 <div className="mb-4">
