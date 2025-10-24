@@ -32,16 +32,16 @@ const Contact = () => {
     {
       icon: EnvelopeIcon,
       title: "Email",
-      details: "hello@lumina.dev",
-      link: "mailto:hello@lumina.dev",
+      details: "vishalmurugan006@gmail.com",
+      link: "vishalmurugan006@gmail.com",
       description: "General inquiries and partnerships"
     },
     {
       icon: MapPinIcon,
       title: "Location",
-      details: "Tech Hub, Innovation District",
+      details: "CFI hall, Stella Mary's College of Engineering",
       link: null,
-      description: "San Francisco, CA 94105"
+      description: "Kanyakumari"
     },
     {
       icon: PhoneIcon,
@@ -52,10 +52,10 @@ const Contact = () => {
     },
     {
       icon: ClockIcon,
-      title: "Office Hours",
-      details: "Mon-Fri: 9AM-6PM PST",
+      title: "Community Hours",
+      details: "Active daily on Discord",
       link: null,
-      description: "Response time: 24-48 hours"
+      description: "Response time: within 24 hours"
     }
   ];
 
@@ -123,69 +123,35 @@ const Contact = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                  className="card-cyber p-6 rounded-xl hover:border-neon-blue/60 transition-all duration-300"
+                  className="card-cyber p-6 rounded-xl hover:border-neon-blue/60 transition-all duration-300 h-full"
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-neon-blue to-hot-pink rounded-full flex items-center justify-center flex-shrink-0">
-                      <info.icon className="w-6 h-6 text-dark-charcoal" />
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-neon-blue to-hot-pink rounded-full flex items-center justify-center flex-shrink-0">
+                        <info.icon className="w-6 h-6 text-dark-charcoal" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-cyber font-bold text-neon-green mb-1">{info.title}</h3>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className="text-white hover:text-neon-blue transition-colors duration-300 font-medium break-all"
+                          >
+                            {info.details}
+                          </a>
+                        ) : (
+                          <p className="text-white font-medium break-all">{info.details}</p>
+                        )}
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-cyber font-bold text-neon-green mb-1">{info.title}</h3>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-white hover:text-neon-blue transition-colors duration-300 font-medium"
-                        >
-                          {info.details}
-                        </a>
-                      ) : (
-                        <p className="text-white font-medium">{info.details}</p>
-                      )}
-                      <p className="text-gray-400 text-sm mt-1">{info.description}</p>
-                    </div>
+                    <div className="flex-grow" />
+                    <p className="text-gray-400 text-sm mt-4">{info.description}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Social Media */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-              className="card-cyber p-8 rounded-xl border-hot-pink/30"
-            >
-              <h3 className="font-cyber font-bold text-hot-pink mb-4 text-xl">Follow Our Journey</h3>
-              <p className="text-gray-300 mb-6">
-                Stay updated with our latest projects, events, and community highlights.
-              </p>
-              <div className="flex space-x-4">
-                <a
-                  href="https://github.com/lumina"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 bg-cyber-gray border border-neon-blue/30 rounded-lg hover:border-neon-blue hover:bg-neon-blue/10 transition-all duration-300"
-                >
-                  <span className="text-neon-blue font-bold mr-2">GitHub</span>
-                </a>
-                <a
-                  href="https://discord.gg/lumina"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 bg-cyber-gray border border-neon-blue/30 rounded-lg hover:border-neon-blue hover:bg-neon-blue/10 transition-all duration-300"
-                >
-                  <span className="text-neon-blue font-bold mr-2">Discord</span>
-                </a>
-                <a
-                  href="https://twitter.com/lumina_dev"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 bg-cyber-gray border border-neon-blue/30 rounded-lg hover:border-neon-blue hover:bg-neon-blue/10 transition-all duration-300"
-                >
-                  <span className="text-neon-blue font-bold mr-2">Twitter</span>
-                </a>
-              </div>
-            </motion.div>
+            
           </div>
 
           {/* Contact Form */}

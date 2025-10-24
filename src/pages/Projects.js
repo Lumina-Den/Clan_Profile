@@ -275,37 +275,6 @@ const Projects = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* GitHub CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center card-cyber p-12 rounded-xl border-neon-blue/30"
-        >
-          <h3 className="text-3xl font-cyber font-bold text-neon-blue mb-4">
-            Explore All Our Projects
-          </h3>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Check out our complete portfolio on GitHub and contribute to open source projects that matter.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://github.com/lumina"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-neon px-8 py-4 text-lg font-semibold inline-block"
-            >
-              Visit Our GitHub
-            </a>
-            <a
-              href="/join"
-              className="px-8 py-4 text-lg font-semibold border-2 border-hot-pink text-hot-pink hover:bg-hot-pink hover:text-dark-charcoal transition-all duration-300 inline-block"
-            >
-              Join Our Team
-            </a>
-          </div>
-        </motion.div>
       </div>
     </div>
   );

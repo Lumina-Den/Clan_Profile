@@ -246,26 +246,7 @@ const Events = () => {
           </div>
         </div>
 
-        {/* Event Calendar CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-center mt-20 card-cyber p-12 rounded-xl border-neon-green/30"
-        >
-          <h3 className="text-3xl font-cyber font-bold text-neon-green mb-4">
-            Never Miss an Event
-          </h3>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Subscribe to our calendar and get notified about upcoming workshops, competitions, and community events.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            
-            <button className="px-8 py-4 text-lg font-semibold border-2 border-hot-pink text-hot-pink hover:bg-hot-pink hover:text-dark-charcoal transition-all duration-300">
-              Join Discord
-            </button>
-          </div>
-        </motion.div>
+        
       </div>
     </div>
   );
