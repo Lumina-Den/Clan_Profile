@@ -21,7 +21,7 @@ const Members = () => {
       role: "Captain Bash",
       skills: ["Java", "C++", "Algorithms", "System Design"],
       achievements: ["Codeforces Master", "Meta Hackathon Winner"],
-      avatar: "/Ajisha.png", // Keep as text for now, can be replaced when image is available
+      avatar: "/Ajisha.png", 
       bio: "Expert in competitive programming with a focus on optimization and scalable system architecture.",
       portfolio: "https://ajisha-codes.dev",
       github: "https://github.com/ajisha",
@@ -33,7 +33,7 @@ const Members = () => {
       role: "Senior Basher",
       skills: ["React", "TypeScript", "Design Systems", "Figma"],
       achievements: ["Design Award Winner", "Frontend Mentor"],
-      avatar: "/InfanceTony.png", // Keep as text for now, can be replaced when image is available
+      avatar: "/InfanceTony.png", 
       bio: "Creates beautiful, accessible interfaces that enhance user experience and developer productivity.",
       portfolio: "https://infance-design.dev",
       github: "https://github.com/infancetony",
@@ -44,7 +44,7 @@ const Members = () => {
       role: "Algorithm Specialist",
       skills: ["C++", "Data Structures", "Competitive Programming"],
       achievements: ["IOI Silver Medal", "TopCoder Red"],
-      avatar: "/Falin.jpeg", // Keep as text for now, can be replaced when image is available
+      avatar: "/Falin.jpeg", 
       bio: "Specializes in advanced algorithms and data structures for competitive programming excellence.",
       portfolio: "https://moun-algorithms.dev",
       github: "https://github.com/mounsando",
@@ -55,7 +55,7 @@ const Members = () => {
       role: "Full Stack Developer",
       skills: ["Vue.js", "Django", "PostgreSQL", "Docker"],
       achievements: ["Hackathon Champion", "Tech Blogger"],
-      avatar: "JH", // Keep as text for now, can be replaced when image is available
+      avatar: "/jenish.png", 
       bio: "Full-stack expertise with a passion for clean code and innovative web technologies.",
       portfolio: "https://jenish-fullstack.dev",
       github: "https://github.com/jenish",
@@ -66,7 +66,7 @@ const Members = () => {
       role: "Mobile Developer",
       skills: ["React Native", "Flutter", "iOS", "Android"],
       achievements: ["App Store Featured", "Mobile Innovation Award"],
-      avatar: "HH", // Keep as text for now, can be replaced when image is available
+      avatar: "/HamdhanHussian.png", 
       bio: "Crafts exceptional mobile experiences across platforms with cutting-edge technologies.",
       portfolio: "https://hamdhan-mobile.dev",
       github: "https://github.com/hamdhan",
@@ -77,7 +77,7 @@ const Members = () => {
       role: "Data Scientist",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "AN", // Keep as text for now, can be replaced when image is available
+      avatar: "/Abin.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://abin-datascience.dev",
       github: "https://github.com/abin",
@@ -89,7 +89,7 @@ const Members = () => {
       role: "Data Scientist",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "AS", // Keep as text for now, can be replaced when image is available
+      avatar: "/Aparna.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://aparna-ml.dev",
       github: "https://github.com/aparna",
@@ -101,7 +101,7 @@ const Members = () => {
       role: "Data Scientist",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "ALS", // Keep as text for now, can be replaced when image is available
+      avatar: "/Akshaya.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://akshaya-ai.dev",
       github: "https://github.com/akshayasibcy",
@@ -113,7 +113,7 @@ const Members = () => {
       role: "Data Scientist",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "NA", // Keep as text for now, can be replaced when image is available
+      avatar: "/Nithisha.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://nithisha-analytics.dev",
       github: "https://github.com/nithisha",
