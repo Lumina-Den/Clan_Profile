@@ -34,9 +34,9 @@ const Members = () => {
       achievements: ["Design Award Winner", "Frontend Mentor"],
       avatar: "/InfanceTony.png", 
       bio: "Creates beautiful, accessible interfaces that enhance user experience and developer productivity.",
-      portfolio: "https://infance-design.dev",
-      github: "https://github.com/infancetony",
-      linkedin: "https://linkedin.com/in/infance-tony"
+      portfolio: "http://infance-tony.github.io",
+      github: "http://github.com/infance-tony",
+      linkedin: "https://www.linkedin.com/in/infancetony"
     },
     {
       name: "Moun Sando Falin",
@@ -98,7 +98,7 @@ const Members = () => {
       role: "Junior Basher",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "/Akshaya.png", 
+      avatar: "/AKSHAYA.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://akshaya-ai.dev",
       github: "https://github.com/akshayasibcy",
@@ -109,7 +109,7 @@ const Members = () => {
       role: "Junior Basher",
       skills: ["Python", "TensorFlow", "Data Analysis", "ML"],
       achievements: ["Kaggle Expert", "Research Publication"],
-      avatar: "/Nithisha.png", 
+      avatar: "/NITHISHA.png", 
       bio: "Transforms data into insights using machine learning and advanced statistical methods.",
       portfolio: "https://nithisha-analytics.dev",
       github: "https://github.com/nithisha",
