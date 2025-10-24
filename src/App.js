@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import Members from './pages/Members';
 import Events from './pages/Events';
 import Projects from './pages/Projects';
-import Gallery from './pages/Gallery';
 import JoinUs from './pages/JoinUs';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
@@ -21,7 +20,6 @@ function App() {
           <Route path="/members" element={<Members />} />
           <Route path="/events" element={<Events />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/gallery" element={<Gallery />} />
           <Route path="/join" element={<JoinUs />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
