@@ -52,4 +52,50 @@
       filter: drop-shadow(0 0 20px rgba(0, 255, 255, 1)) drop-shadow(0 0 40px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 60px rgba(0, 255, 255, 0.3));
     }
   }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* Custom wireframe animations for member cards */
+  .wireframe-glow {
+    position: relative;
+  }
+
+  .wireframe-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid;
+    border-image: linear-gradient(45deg, transparent, currentColor, transparent) 1;
+    animation: wireframe-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes wireframe-pulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+  }
 }
