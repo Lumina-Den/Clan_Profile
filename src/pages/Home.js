@@ -1,246 +1,157 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ClockIcon, EyeIcon, HeartIcon } from '@heroicons/react/24/outline';
+
+const Counter = ({ target, suffix = '+', duration = 1500, className = '' }) => {
+  const ref = useRef();
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    let observer;
+    let rafId;
+
+    function startCount() {
+      const start = performance.now();
+      const from = 0;
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const current = Math.floor(from + (target - from) * progress);
+        setValue(current);
+        if (progress < 1) rafId = requestAnimationFrame(step);
+      }
+      rafId = requestAnimationFrame(step);
+    }
+
+    if (ref.current) {
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startCount();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (observer) observer.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [target, duration]);
+
+  return (
+    <div ref={ref} className={className}>
+      {value}{suffix}
+    </div>
+  );
+};
 
 const Home = () => {
-  const aboutCards = [
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const achievements = [
+    { number: 10, suffix: '+', label: 'Active Members', emoji: '👥' },
+    { number: 20, suffix: '+', label: 'Completed Projects', emoji: '💼' },
+    { number: 5, suffix: '+', label: 'Events Hosted', emoji: '📅' },
+  ];
+
+  const featured = [
     {
-      icon: ClockIcon,
-      title: "Our History",
-      description: "Founded by passionate developers who believe in the power of collaborative coding and continuous learning. Born from late-night coding sessions and a shared vision of excellence."
+      image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop',
+      title: 'Luminous Engine',
+      desc: 'A cross-platform toolkit we built to speed up prototyping and community projects.'
     },
     {
-      icon: EyeIcon,
-      title: "Vision",
-      description: "To create a thriving ecosystem where developers push boundaries and build innovative solutions together. We envision a future shaped by our collective code."
+      image: 'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=500&fit=crop',
+      title: 'Lightwave UI',
+      desc: 'An accessible UI kit inspired by neon aesthetics and practical components.'
     },
     {
-      icon: HeartIcon,
-      title: "Core Values",
-      description: "Innovation, collaboration, continuous learning, and excellence in competitive programming. We foster growth through mentorship and shared knowledge."
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop',
+      title: 'Clan Tournament',
+      desc: 'Our flagship event that brought members together for friendly competition and learning.'
     }
   ];
 
-  const focusAreas = [
-    "Competitive Programming",
-    "Algorithm Challenges",
-    "Web Development",
-    "Mobile Applications",
-    "AI & Machine Learning",
-    "Open Source Projects"
-  ];
-
-  const achievements = [
-    { number: "50+", label: "Active Members", color: "text-neon-blue" },
-    { number: "25+", label: "Completed Projects", color: "text-hot-pink" },
-    { number: "100+", label: "Competitions Won", color: "text-neon-green" },
-    { number: "15+", label: "Industry Partners", color: "text-neon-blue" }
+  const team = [
+    { name: 'Aiko', role: 'Leader' },
+    { name: 'Ravi', role: 'Developer' },
+    { name: 'Maya', role: 'Designer' }
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* Background Animation */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-neon-blue/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-hot-pink/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 pt-32 pb-20">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
-        >
-          {/* Logo and Title */}
-          <div className="space-y-1">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-block"
-            >
-              <div className="w-56 h-56 mx-auto relative">
-                <img
-                  src="/lumina.png"
-                  alt="LUMINA Logo"
-                  className="w-full h-full object-contain relative z-10"
-                  style={{
-                    filter: 'drop-shadow(0 0 15px rgba(0, 255, 255, 0.8)) drop-shadow(0 0 30px rgba(0, 255, 255, 0.4)) drop-shadow(0 0 45px rgba(0, 255, 255, 0.2))'
-                  }}
-                />
-                {/* Additional glow layers for enhanced effect */}
-                <img
-                  src="/lumina.png"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-contain opacity-30 blur-sm"
-                  style={{
-                    filter: 'brightness(0) saturate(80%) invert(50%) sepia(96%) saturate(6238%) hue-rotate(180deg) brightness(101%) contrast(101%)'
-                  }}
-                />
-                <img
-                  src="/lumina.png"
-                  alt=""
-                  className="absolute inset-0 w-full h-full object-contain opacity-20 blur-md"
-                  style={{
-                    filter: 'brightness(0) saturate(100%) invert(50%) sepia(96%) saturate(6238%) hue-rotate(180deg) brightness(101%) contrast(101%)'
-                  }}
-                />
-              </div>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="font-cyber text-6xl md:text-7xl font-bold text-glow"
-            >
-              <span className="bg-gradient-to-r from-neon-blue via-hot-pink to-neon-green bg-clip-text text-transparent">
-                LUMINA
-              </span>
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-300 font-light"
-            >
-              <p className="mt-4 text-2xl font-cyber text-hot-pink tracking-widest">
-                        "Tanoshinagara manabu"
-            </p>
-            <p className="text-lg text-gray-400">
-                        (Learning while having fun)
-            </p>
-            </motion.p>
-          </div>
-
-          {/* Motto */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-2xl md:text-3xl font-medium text-neon-blue text-glow"
-          >
-            {/*texts here*/}
-          </motion.p>
-
-      
-
-          {/* Quick Stats */}
-          
-        </motion.div>
-
-        {/* Floating Code Elements */}
-        <div className="absolute top-20 left-10 opacity-30 animate-float">
-          <div className="font-mono text-neon-green">&lt;/&gt;</div>
+    <div className="min-h-screen bg-hero-gradient-extended text-white">
+      {/* HERO */}
+      <header id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 py-24 relative z-10 text-center">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <div className="mx-auto w-64 h-64 flex items-center justify-center mb-6">
+              <img
+                src="/lumina-transparent.png"
+                alt="Lumina Logo"
+                className="w-48 h-48 object-contain logo-transparent"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/lumina.png'; }}
+              />
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold hero-title mb-2">LUMINA</h1>
+            <p className="motto-text text-2xl sm:text-3xl md:text-4xl text-gray-100/95 mb-4">Tanoshinagara manabu</p>
+            <p className="text-gray-300 max-w-2xl mx-auto mb-8">A creative community within <span className="text-transparent bg-gradient-to-r from-neon-blue via-hot-pink to-neon-green bg-clip-text font-bold text-xl font-cyber">Byte Bash Blitz</span> dedicated to innovation and teamwork.</p>
+            <button onClick={() => scrollToSection('about')} className="btn-neon px-8 py-3 rounded-md">Explore More</button>
+          </motion.div>
         </div>
-        <div className="absolute bottom-20 right-10 opacity-30 animate-float delay-1000">
-          <div className="font-mono text-hot-pink">{ }</div>
+      </header>
+
+                    {/* ABOUT */}
+  <section id="about" className="py-16 bg-hero-gradient-extended">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.h2 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-3xl font-cyber font-bold mb-4">About Lumina Clan</motion.h2>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-gray-300 leading-relaxed mb-6">
+            Lumina Clan stands for creativity, collaboration, and courage. We’re a team that thrives on innovation and unity, lighting up our community through meaningful projects and shared goals.
+          </motion.p>
+          <motion.div className="flex justify-center gap-6 text-2xl" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2 }}>
+            <span className="bg-cyber-gray px-4 py-2 rounded-full">💡 Creativity</span>
+            <span className="bg-cyber-gray px-4 py-2 rounded-full">🤝 Unity</span>
+            <span className="bg-cyber-gray px-4 py-2 rounded-full">🔥 Passion</span>
+          </motion.div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="bg-gradient-to-b from-transparent to-cyber-gray/50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Vision & Mission */}
+      <section id="vision" className="py-12">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div className="card-cyber p-8 rounded-xl" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h3 className="text-2xl font-bold text-neon-blue mb-3">Vision</h3>
+            <p className="text-gray-300">To lead with light — empowering every member to grow, create, and shine within our community.</p>
+          </motion.div>
+          <motion.div className="card-cyber p-8 rounded-xl" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h3 className="text-2xl font-bold text-neon-green mb-3">Mission</h3>
+            <p className="text-gray-300">To inspire innovation, teamwork, and leadership through every project and event we take on.</p>
+          </motion.div>
+        </div>
+      </section>
 
-          {/* About Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            {aboutCards.map((card, index) => (
-              <motion.div
-                key={card.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                className="card-cyber p-8 rounded-xl hover:border-neon-blue/60 transition-all duration-300 group"
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-neon-blue to-hot-pink rounded-full flex items-center justify-center group-hover:animate-pulse">
-                    <card.icon className="w-8 h-8 text-dark-charcoal" />
-                  </div>
-                  <h3 className="text-2xl font-cyber font-bold text-neon-blue">{card.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{card.description}</p>
+      {/* Stats */}
+      <section id="stats" className="py-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <h3 className="text-3xl font-cyber font-bold text-hot-pink mb-8">Lumina in Numbers</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {achievements.map((a) => (
+              <motion.div key={a.label} className="card-cyber p-4 rounded-xl text-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
+                <div className="text-3xl mb-2">{a.emoji}</div>
+                <div className="text-4xl font-extrabold text-neon-blue mb-1">
+                  <Counter target={a.number} suffix={a.suffix} />
                 </div>
+                <div className="text-gray-300">{a.label}</div>
               </motion.div>
             ))}
           </div>
-
-          {/* Achievements */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mb-20"
-          >
-            <h3 className="text-3xl font-cyber font-bold text-center text-hot-pink mb-12">Our Achievements</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={achievement.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center card-cyber p-6 rounded-xl"
-                >
-                  <div className={`text-4xl font-cyber font-bold ${achievement.color} mb-2`}>
-                    {achievement.number}
-                  </div>
-                  <div className="text-gray-300 text-sm">{achievement.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Focus Areas */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h3 className="text-3xl font-cyber font-bold text-neon-green mb-8">Our Focus Areas</h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {focusAreas.map((area, index) => (
-                <motion.span
-                  key={area}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="px-6 py-3 bg-cyber-gray border border-neon-green/50 rounded-full text-neon-green font-medium hover:border-neon-green hover:bg-neon-green/10 transition-all duration-300 cursor-default"
-                >
-                  {area}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Mission Statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="card-cyber p-12 rounded-xl text-center border-neon-blue/30"
-          >
-            <h3 className="text-3xl font-cyber font-bold text-neon-blue mb-6">Our Mission</h3>
-            <p className="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
-              To cultivate a generation of exceptional developers who don't just write code, but craft solutions 
-              that transform industries and improve lives. Through rigorous training, collaborative projects, 
-              and unwavering support, we prepare our members to lead the technological revolution.
-            </p>
-          </motion.div>
         </div>
       </section>
-      
+     
     </div>
   );
-  
 };
 
 export default Home;

@@ -99,3 +99,71 @@
     }
   }
 }
+
+/* Hero specific visuals */
+.bg-hero-gradient {
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(0,255,255,0.06), transparent 8%),
+              radial-gradient(800px 400px at 80% 80%, rgba(255,80,160,0.06), transparent 10%),
+              linear-gradient(135deg, rgba(6,6,23,0.65), rgba(12,6,20,0.45));
+  animation: hero-gradient-move 12s ease-in-out infinite;
+}
+
+@keyframes hero-gradient-move {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+#hero-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-title {
+  font-family: 'Orbitron', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #ffffff;
+  background: linear-gradient(90deg, #ffffff, #a6fff9 20%, #ffb3e0 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 6px 30px rgba(170,220,255,0.08), 0 1px 2px rgba(0,0,0,0.4);
+}
+
+.hero-tagline {
+  letter-spacing: 0.6px;
+}
+
+@media (max-width: 640px) {
+  .hero-title { font-size: 2.2rem; }
+}
+
+/* Slight accessibility focus ring for CTA */
+.btn-neon:focus {
+  outline: 3px solid rgba(0,255,255,0.15);
+  outline-offset: 2px;
+}
+
+/* Logo transparent helper: ensures placed logos blend with background */
+.logo-transparent {
+  background: transparent !important;
+  display: block;
+}
+
+/* Motto styling for hero */
+.motto-text {
+  font-family: 'Orbitron', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(90deg, #ffd86b, #b892ff 40%, #88fff0 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 6px 30px rgba(136,255,240,0.06), 0 1px 2px rgba(0,0,0,0.5);
+  letter-spacing: 0.6px;
+}
+
+/* Apply same hero background to about section when desired */
+.bg-hero-gradient-extended {
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(0,255,255,0.06), transparent 8%),
+              radial-gradient(800px 400px at 80% 80%, rgba(255,80,160,0.06), transparent 10%),
+              linear-gradient(135deg, rgba(6,6,23,0.9), rgba(12,6,20,0.85));
+}

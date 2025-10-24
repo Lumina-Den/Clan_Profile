@@ -1,107 +1,185 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width = (canvas.width = canvas.offsetWidth * devicePixelRatio);
+    let height = (canvas.height = canvas.offsetHeight * devicePixelRatio);
+    const particles = [];
+    const PARTICLE_COUNT = Math.max(30, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 20000));
+
+    function initParticles() {
+      particles.length = 0;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: 1 + Math.random() * 3,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          hue: 180 + Math.random() * 120,
+        });
+      }
+    }
+
+    function resize() {
+      width = (canvas.width = canvas.offsetWidth * devicePixelRatio);
+      height = (canvas.height = canvas.offsetHeight * devicePixelRatio);
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+      initParticles();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // subtle gradient overlay
+      const g = ctx.createLinearGradient(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      g.addColorStop(0, 'rgba(10, 10, 30, 0.2)');
+      g.addColorStop(0.5, 'rgba(30, 10, 40, 0.12)');
+      g.addColorStop(1, 'rgba(10, 30, 40, 0.08)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < -10) p.x = canvas.offsetWidth + 10;
+        if (p.x > canvas.offsetWidth + 10) p.x = -10;
+        if (p.y < -10) p.y = canvas.offsetHeight + 10;
+        if (p.y > canvas.offsetHeight + 10) p.y = -10;
+
+        const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 8);
+        gradient.addColorStop(0, `hsla(${p.hue},100%,70%,0.9)`);
+        gradient.addColorStop(0.4, `hsla(${p.hue},80%,60%,0.25)`);
+        gradient.addColorStop(1, `hsla(${p.hue},60%,40%,0)`);
+
+        ctx.beginPath();
+        ctx.fillStyle = gradient;
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // optional subtle connection lines
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i];
+          const b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.strokeStyle = `rgba(200,220,255,${(120 - dist) / 500})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    let raf = null;
+    function loop() {
+      draw();
+      raf = requestAnimationFrame(loop);
+    }
+
+    initParticles();
+    loop();
+    window.addEventListener('resize', resize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Animation */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-neon-blue/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-hot-pink/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+      {/* Canvas particle background */}
+      <canvas ref={canvasRef} id="hero-canvas" className="absolute inset-0 w-full h-full z-0 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      {/* subtle animated gradient layers */}
+      <div className="absolute inset-0 bg-hero-gradient opacity-60 mix-blend-screen z-0" aria-hidden="true"></div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
+          transition={{ duration: 0.9 }}
+          className="space-y-6 sm:space-y-8"
         >
-          {/* Logo and Title */}
-          <div className="space-y-4">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-block"
-            >
-              <div className="w-24 h-24 mx-auto bg-gradient-to-r from-neon-blue to-hot-pink rounded-2xl flex items-center justify-center mb-6 animate-glow">
-                <span className="text-4xl font-cyber font-bold text-dark-charcoal">L</span>
-              </div>
-            </motion.div>
-            
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-24 h-24 flex items-center justify-center rounded-3xl bg-gradient-to-br from-neon-blue to-hot-pink shadow-[0_10px_40px_rgba(255,80,160,0.12)]">
+              <span className="text-4xl font-bold text-dark-charcoal">L</span>
+            </div>
+
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="font-cyber text-6xl md:text-8xl font-bold text-glow"
+              transition={{ delay: 0.3 }}
+              className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-tight font-extrabold"
             >
-              <span className="bg-gradient-to-r from-neon-blue via-hot-pink to-neon-green bg-clip-text text-transparent">
-                LUMINA
-              </span>
+              <span className="block">LUMINA CLAN</span>
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-300 font-light"
+              transition={{ delay: 0.5 }}
+              className="hero-tagline text-base sm:text-lg md:text-xl text-gray-200/90"
             >
-              Byte Bash Blitz
+              Forged in Light. United in Spirit.
             </motion.p>
           </div>
 
-          {/* Motto */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="text-2xl md:text-3xl font-medium text-neon-blue text-glow"
+            className="max-w-3xl mx-auto text-md sm:text-lg text-gray-300 leading-relaxed"
           >
-            "Empowering Innovation, One Line at a Time"
+            We celebrate skill, teamwork, and the bright energy that drives our community. Join events,
+            showcase projects, and grow with a clan that carries light into every match.
           </motion.p>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.0 }}
-            className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed"
-          >
-            Join our elite coding community where passion meets innovation. 
-            We're building the future through competitive programming, cutting-edge projects, and collaborative learning.
-          </motion.p>
-
-          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+            transition={{ delay: 1.0 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
           >
-            <Link
-              to="/join"
+            <button
+              onClick={() => scrollToSection('join')}
               className="btn-neon px-8 py-4 text-lg font-semibold"
+              aria-label="Join the Clan"
             >
-              Join Our Clan
-            </Link>
-            <Link
-              to="/projects"
-              className="px-8 py-4 text-lg font-semibold border-2 border-hot-pink text-hot-pink hover:bg-hot-pink hover:text-dark-charcoal transition-all duration-300"
-            >
-              View Projects
-            </Link>
-          </motion.div>
-        </motion.div>
+              Join the Clan
+            </button>
 
-        {/* Floating Code Elements */}
-        <div className="absolute top-20 left-10 opacity-30 animate-float">
-          <div className="font-mono text-neon-green">&lt;/&gt;</div>
-        </div>
-        <div className="absolute bottom-20 right-10 opacity-30 animate-float delay-1000">
-          <div className="font-mono text-hot-pink">{ }</div>
-        </div>
+            <button
+              onClick={() => scrollToSection('about')}
+              className="px-8 py-4 text-lg font-semibold border-2 border-hot-pink text-hot-pink hover:bg-hot-pink hover:text-dark-charcoal transition-all duration-300 rounded-md"
+            >
+              Explore Our Legacy
+            </button>
+          </motion.div>
+
+          <div className="mt-6 text-sm text-gray-400">A proud clan of the [Community Name]</div>
+        </motion.div>
       </div>
     </section>
   );

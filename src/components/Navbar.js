@@ -32,10 +32,11 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 mr-auto">
             <div className="w-12 h-12">
-              <img 
-                src="/lumina.png" 
-                alt="LUMINA Logo" 
-                className="w-full h-full object-contain"
+              <img
+                src="/lumina-transparent.png"
+                alt="LUMINA Logo"
+                className="w-full h-full object-contain logo-transparent"
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/lumina.png'; }}
               />
             </div>
             {/* <span className="font-cyber text-4xl font-bold text-neon-blue">LUMINA</span> */}

@@ -212,22 +212,22 @@ const Members = () => {
           whileHover={{ scale: 1.1, rotate: 360 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="text-2xl font-cyber font-bold text-dark-charcoal">
+          <span className="text-4xl font-cyber font-bold text-dark-charcoal">
             {member.avatar}
           </span>
         </motion.div>
         
-        <h3 className={`text-xl font-cyber font-bold text-${categoryColor} mb-1`}>
+        <h3 className={`text-2xl font-cyber font-bold text-${categoryColor} mb-1`}>
           {member.name}
         </h3>
-        <p className="text-hot-pink font-medium text-sm uppercase tracking-wider">
+        <p className="text-hot-pink font-medium text-lg uppercase tracking-wider">
           {member.role}
         </p>
       </div>
 
       {/* Skills section */}
       <div className="mb-4 relative z-10">
-        <h4 className="text-sm font-semibold text-neon-green mb-2 uppercase tracking-wide">
+        <h4 className="text-lg font-semibold text-neon-green mb-2 uppercase tracking-wide">
           Core Skills
         </h4>
         <div className="flex flex-wrap gap-2">
@@ -238,7 +238,7 @@ const Members = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: skillIndex * 0.1 }}
               className={`
-                px-3 py-1 rounded-full text-xs font-medium
+                px-3 py-1 rounded-full text-md font-medium
                 bg-${categoryColor}/20 border border-${categoryColor}/50 
                 text-${categoryColor} backdrop-blur-sm
                 hover:bg-${categoryColor}/30 transition-all duration-200
@@ -252,7 +252,7 @@ const Members = () => {
 
       {/* Achievements section */}
       <div className="mb-4 relative z-10">
-        <h4 className="text-sm font-semibold text-neon-green mb-2 uppercase tracking-wide">
+        <h4 className="text-lg font-semibold text-neon-green mb-2 uppercase tracking-wide">
           Key Achievements
         </h4>
         <ul className="space-y-1">
@@ -262,7 +262,7 @@ const Members = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: achieveIndex * 0.1 }}
-              className="text-sm text-gray-300 flex items-center"
+              className="text-lg text-gray-300 flex items-center"
             >
               <span className={`w-2 h-2 bg-${categoryColor} rounded-full mr-2 animate-pulse`}></span>
               {achievement}
@@ -282,7 +282,7 @@ const Members = () => {
               whileHover={{ scale: 1.1, rotate: 5 }}
               className={`p-2 rounded-full bg-${categoryColor}/20 border border-${categoryColor}/50 hover:bg-${categoryColor}/30 transition-all duration-200`}
             >
-              <span className="text-xs">🌐</span>
+              <span className="text-lg">🌐</span>
             </motion.a>
           )}
           {member.github && (
@@ -293,7 +293,7 @@ const Members = () => {
               whileHover={{ scale: 1.1, rotate: -5 }}
               className={`p-2 rounded-full bg-${categoryColor}/20 border border-${categoryColor}/50 hover:bg-${categoryColor}/30 transition-all duration-200`}
             >
-              <span className="text-xs">📱</span>
+              <span className="text-lg">📱</span>
             </motion.a>
           )}
           {member.linkedin && (
@@ -304,7 +304,7 @@ const Members = () => {
               whileHover={{ scale: 1.1, rotate: 5 }}
               className={`p-2 rounded-full bg-${categoryColor}/20 border border-${categoryColor}/50 hover:bg-${categoryColor}/30 transition-all duration-200`}
             >
-              <span className="text-xs">💼</span>
+              <span className="text-lg">💼</span>
             </motion.a>
           )}
         </div>
