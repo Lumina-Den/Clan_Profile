@@ -38,7 +38,7 @@ const Navbar = () => {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-cyber text-4xl font-bold text-neon-blue">LUMINA</span>
+            {/* <span className="font-cyber text-4xl font-bold text-neon-blue">LUMINA</span> */}
           </Link>
 
           {/* Desktop Navigation */}
