@@ -47,7 +47,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/lumina"
+                href="https://github.com/Lumina-Den"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-cyber-gray border border-neon-blue/30 rounded-full flex items-center justify-center hover:border-neon-blue hover:bg-neon-blue/10 transition-all duration-300"
